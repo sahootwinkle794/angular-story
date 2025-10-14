@@ -1,0 +1,41 @@
+<header [class.sticky]="isSticky" class="th-header header-layout1 sticky-wrapper">
+    <div class="container">
+        <div class="menu-area d-flex align-items-center justify-content-between ">
+            <!-- Logo -->
+            <div class="header-logo">
+                <a routerLink="/">
+                    <img src="/img/logo.svg" alt="Logo" />
+                </a>
+            </div>
+
+            <!-- Menu Toggle (Mobile) -->
+            <button class="navbar-toggler d-lg-none" type="button" aria-label="toggle-btn" (click)="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Navigation Menu -->
+             <div class="menu-area-wrap">
+            <nav class="main-menu d-none d-lg-block" [class.active]="isMenuOpen">
+                <ul>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a routerLink="/about">About</a></li>
+                    <li class="menu-item-has-children">
+                        <a href="#">Stories</a>
+                        <ul class="sub-menu">
+                            <li><a routerLink="/story-category">Story Category</a></li>
+                            <li><a routerLink="/story-details">Story Details</a></li>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/contact">Contact</a></li>
+                </ul>
+            </nav>
+            </div>
+            <!-- Right Icon -->
+            <div class="header-button d-none d-lg-block">
+                <button class="icon-btn style2" type="button" aria-label="head-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

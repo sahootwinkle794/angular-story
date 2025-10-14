@@ -1,0 +1,42 @@
+#donation-sec {
+  position: relative;
+
+  .slider-btn {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      background: #ff6600;
+    }
+
+    &.prev-btn {
+      left: -40px;
+    }
+
+    &.next-btn {
+      right: -40px;
+    }
+  }
+
+  .donation-card {
+    transition: transform 0.3s;
+    &:hover {
+      transform: translateY(-6px);
+    }
+  }
+}
+.donation-card img {
+  width: 100%;          // Full width of the card
+  height: 250px;        // Fixed height for all images
+  object-fit: cover;    // Crop and maintain aspect ratio
+  border-radius: 8px;
+}

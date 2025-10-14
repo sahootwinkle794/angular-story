@@ -1,0 +1,26 @@
+<section class="space" id="donation-sec">
+  <div class="container position-relative">
+    <h2 class="sec-title text-center mb-4">Story Category</h2>
+
+    <!-- Carousel -->
+    <owl-carousel-o #owlCarousel [options]="customOptions" class="owl-theme">
+      <ng-template carouselSlide *ngFor="let card of displayCards">
+        <div class="donation-card text-center p-3 shadow rounded bg-white">
+          <img [src]="card.image" [alt]="card.title" class="w-100 mb-3 rounded" />
+          <h3 class="box-title">{{ card.title }}</h3>
+          <button class="th-btn style6 mt-3">
+            Read More <i class="fas fa-arrow-up-right ms-2"></i>
+          </button>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+
+    <!-- Custom Controls -->
+    <button class="slider-btn prev-btn" (click)="prevSlide()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <button class="slider-btn next-btn" (click)="nextSlide()">
+      <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</section>
