@@ -1,0 +1,33 @@
+.story-category-page {
+  background: #f9f9f9;
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .story-card {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .story-image {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .th-btn {
+      background: #c38c00;
+      color: #fff;
+      border: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #c38c00;
+      }
+    }
+  }
+}

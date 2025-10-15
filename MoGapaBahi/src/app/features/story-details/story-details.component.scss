@@ -1,0 +1,31 @@
+.story-details-page {
+  background: #f9f9f9;
+
+  .story-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  .story-image img {
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  .story-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .th-btn {
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #084298;
+    }
+  }
+}

@@ -1,1 +1,28 @@
-<p>story-details works!</p>
+<section class="story-details-page py-5">
+  <div class="container">
+    <!-- Story Header -->
+    <div class="text-center mb-5">
+      <h1 class="story-title">{{ story.title }}</h1>
+      <p class="text-muted">
+        By <strong>{{ story.author }}</strong> | {{ story.date }} | Category: <strong>{{ story.category }}</strong>
+      </p>
+    </div>
+
+    <!-- Story Image -->
+    <div class="story-image mb-4 text-center">
+      <img [src]="story.image" [alt]="story.title" class="w-100 rounded shadow" />
+    </div>
+
+    <!-- Story Content -->
+    <div class="story-content">
+      <p>{{ story.content }}</p>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-4 text-center">
+      <button class="th-btn style6" routerLink="/story-category/{{ story.category }}">
+        ← Back to {{ story.category | titlecase }} Stories
+      </button>
+    </div>
+  </div>
+</section>

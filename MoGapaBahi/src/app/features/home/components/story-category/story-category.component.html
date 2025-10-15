@@ -8,9 +8,11 @@
         <div class="donation-card text-center p-3 shadow rounded bg-white">
           <img [src]="card.image" [alt]="card.title" class="w-100 mb-3 rounded" />
           <h3 class="box-title">{{ card.title }}</h3>
-          <button class="th-btn style6 mt-3">
+          <button class="th-btn style6 mt-3" [routerLink]="['/story-category', card.title.toLowerCase()]">
             Read More <i class="fas fa-arrow-up-right ms-2"></i>
           </button>
+
+
         </div>
       </ng-template>
     </owl-carousel-o>

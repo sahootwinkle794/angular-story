@@ -1,45 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarouselModule, OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { RouterModule } from '@angular/router'; // ✅ Import RouterModule
+import { CarouselModule } from 'ngx-owl-carousel-o'; // ✅ Owl carousel module
 
 @Component({
   selector: 'app-story-category',
   standalone: true,
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule, RouterModule, CarouselModule], // ✅ Add RouterModule here
   templateUrl: './story-category.component.html',
   styleUrls: ['./story-category.component.scss']
 })
 export class StoryCategoryComponent implements OnInit {
 
-  // Access the carousel through the template reference variable instead
-  @ViewChild('owlCarousel', { static: false }) owlCarousel: any;
-
-  cards = [
-    {
-      title: 'Adventure', image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      title: 'Romance', image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      title: 'Mystery', image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      title: 'Fantasy', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      title: 'Comedy', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80'
-    },
-  ];
-
-  displayCards: any[] = [];
-
-  customOptions: OwlOptions = {
+  customOptions = {
     loop: true,
-    margin: 15,
+    margin: 20,
     autoplay: true,
     autoplayTimeout: 3000,
-    autoplayHoverPause: true,
     dots: false,
     nav: false,
     responsive: {
@@ -50,15 +27,24 @@ export class StoryCategoryComponent implements OnInit {
     }
   };
 
-  ngOnInit(): void {
-    this.displayCards = [...this.cards];
+  displayCards = [
+    { title: 'Adventure', image: 'https://cdn.escapismmagazine.com/featured_image_x_large/5d5eb179acb33.jpeg' },
+    { title: 'Travel', image: 'https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' },
+    {
+      title: 'Science', image: 'https://cdn.pixabay.com/photo/2023/06/03/17/15/ai-generated-8038116_1280.jpg'
+    },
+    { title: 'Nature', image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80' }
+  ];
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  prevSlide() {
+    // logic for prev button (if you are using @ViewChild)
   }
 
   nextSlide() {
-    this.owlCarousel.next();
-  }
-
-  prevSlide() {
-    this.owlCarousel.prev();
+    // logic for next button
   }
 }
