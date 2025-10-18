@@ -40,3 +40,41 @@
   object-fit: cover;    // Crop and maintain aspect ratio
   border-radius: 8px;
 }
+/* Carousel card style (optional, adjust as needed) */
+.donation-card {
+  transition: transform 0.3s;
+}
+.donation-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Custom control buttons */
+.custom-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none; /* allow clicks only on buttons */
+}
+
+.slider-btn {
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.slider-btn i {
+  font-size: 16px;
+}

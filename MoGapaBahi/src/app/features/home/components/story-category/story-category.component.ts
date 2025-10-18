@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // ✅ Import RouterModule
-import { CarouselModule } from 'ngx-owl-carousel-o'; // ✅ Owl carousel module
+import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { StoryService } from '../../services/story.service';
+import { appStore } from '../../../../store/store';
+import { STORY_ACTIONS } from '../../../../store/story/story.actions';
+
+
 
 @Component({
   selector: 'app-story-category',
   standalone: true,
-  imports: [CommonModule, RouterModule, CarouselModule], // ✅ Add RouterModule here
+  imports: [CommonModule, RouterModule, CarouselModule],
   templateUrl: './story-category.component.html',
   styleUrls: ['./story-category.component.scss']
 })
 export class StoryCategoryComponent implements OnInit {
-
   customOptions = {
     loop: true,
     margin: 20,
@@ -27,24 +31,32 @@ export class StoryCategoryComponent implements OnInit {
     }
   };
 
-  displayCards = [
-    { title: 'Adventure', image: 'https://cdn.escapismmagazine.com/featured_image_x_large/5d5eb179acb33.jpeg' },
-    { title: 'Travel', image: 'https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' },
-    {
-      title: 'Science', image: 'https://cdn.pixabay.com/photo/2023/06/03/17/15/ai-generated-8038116_1280.jpg'
-    },
-    { title: 'Nature', image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80' }
-  ];
+  displayCards: any[] = [];
+  loading = false;
+  error: string | null = null;
 
-  constructor() { }
+  constructor(private storyService: StoryService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.loadStories();
 
-  prevSlide() {
-    // logic for prev button (if you are using @ViewChild)
+    appStore.getState().subscribe(state => {
+      this.displayCards = state.stories;
+      this.loading = state.loading;
+      this.error = state.error;
+    });
   }
 
-  nextSlide() {
-    // logic for next button
+  async loadStories() {
+    try {
+      appStore.dispatch({ type: STORY_ACTIONS.FETCH_START });
+      const data = await this.storyService.getStories();
+      appStore.dispatch({ type: STORY_ACTIONS.FETCH_SUCCESS, payload: data });
+    } catch (error: any) {
+      appStore.dispatch({ type: STORY_ACTIONS.FETCH_ERROR, payload: error.message });
+    }
   }
+
+  prevSlide() {}
+  nextSlide() {}
 }
