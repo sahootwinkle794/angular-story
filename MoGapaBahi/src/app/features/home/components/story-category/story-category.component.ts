@@ -5,8 +5,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { StoryService } from '../../services/story.service';
 import { appStore } from '../../../../store/store';
 import { STORY_ACTIONS } from '../../../../store/story/story.actions';
-
-
+import { LanguageService } from '../../../../services/language.service';
 
 @Component({
   selector: 'app-story-category',
@@ -35,15 +34,23 @@ export class StoryCategoryComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private storyService: StoryService) {}
+  constructor(
+    private storyService: StoryService,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
     this.loadStories();
 
     appStore.getState().subscribe(state => {
-      this.displayCards = state.stories;
-      this.loading = state.loading;
-      this.error = state.error;
+      this.displayCards = state.story.stories;
+      this.loading = state.story.loading;
+      this.error = state.story.error;
+    });
+
+    // Listen for language changes and reload data
+    this.languageService.getCurrentLanguage().subscribe(language => {
+      this.loadStories();
     });
   }
 
