@@ -1,13 +1,13 @@
 import axios from 'axios';
+import { API_CONFIG } from '../config/api.config';
 
-const BASE_URL = 'https://mogapabahi-431fe4166879.herokuapp.com/en';
 
 export const fetchStoriesByType = async (type: string) => {
-  const response = await axios.get(`${BASE_URL}/story/by-type?type=${type}`);
+  const response = await axios.get(`${API_CONFIG.BASE_URL}/story/by-type?type=${type}`);
   return response.data;
 };
 
 export const fetchStoryById = async (id: string) => {
-  const response = await axios.get(`${BASE_URL}/story/${id}`);
+  const response = await axios.get(`${API_CONFIG.BASE_URL}/story/${id}`);
   return response.data;
 };
